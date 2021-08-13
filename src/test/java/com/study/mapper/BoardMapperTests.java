@@ -85,6 +85,7 @@ public class BoardMapperTests {
     }
 
     @Test
+    @Ignore
     public void testPaging() {
         Criteria criteria = new Criteria();
         // 5개 씩 3페이지
@@ -93,6 +94,16 @@ public class BoardMapperTests {
 
         List<BoardVO> list = mapper.getListWithPaging(criteria);
 
+        list.forEach(board -> log.info(board));
+    }
+
+    @Test
+    public void testSearch() {
+        Criteria criteria = new Criteria();
+        criteria.setKeyword("새로");
+        criteria.setType("TC");
+
+        List<BoardVO> list = mapper.getListWithPaging(criteria);
         list.forEach(board -> log.info(board));
     }
 }
